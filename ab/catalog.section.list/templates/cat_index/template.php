@@ -38,14 +38,7 @@ $arViewStyles = array(
         'EMPTY_IMG' => $this->GetFolder() . '/images/tile-empty.png'
     )
 );
-$arCurView = $arViewStyles[$arParams['VIEW_MODE']];
-$strSectionEdit = CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "SECTION_EDIT");
-$strSectionDelete = CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "SECTION_DELETE");
-$arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_CONFIRM'));
-?>
-<?
-$this->AddEditAction($arResult['SECTION']['ID'], $arResult['SECTION']['EDIT_LINK'], $strSectionEdit);
-$this->AddDeleteAction($arResult['SECTION']['ID'], $arResult['SECTION']['DELETE_LINK'], $strSectionDelete, $arSectionDeleteParams);
+
 ?>
 
 <? //PR($arResult);?>
@@ -53,7 +46,15 @@ $this->AddDeleteAction($arResult['SECTION']['ID'], $arResult['SECTION']['DELETE_
     <div class="container">
         <div class="row">
             <div class="cat_index_wr">
-                <? foreach ($arResult['SECTIONS'] as $k => $arResult_items): ?>
+                <? foreach ($arResult['SECTIONS'] as $k => $arResult_items): 
+$arCurView = $arViewStyles[$arParams['VIEW_MODE']];
+$strSectionEdit = CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "SECTION_EDIT");
+$strSectionDelete = CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "SECTION_DELETE");
+$arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_CONFIRM'));
+
+$this->AddEditAction($arResult['SECTION']['ID'], $arResult['SECTION']['EDIT_LINK'], $strSectionEdit);
+$this->AddDeleteAction($arResult['SECTION']['ID'], $arResult['SECTION']['DELETE_LINK'], $strSectionDelete, $arSectionDeleteParams);
+                ?>
                     <? if ($k < 4): ?>
                         <div class="cat_index_small" id="<? echo $this->GetEditAreaId($arResult['ID']); ?>">
                             <a href="/">
